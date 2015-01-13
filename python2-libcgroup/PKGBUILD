@@ -1,0 +1,21 @@
+pkgname=('python2-libcgroup')
+pkgver=2.0.1
+pkgrel=0.38
+pkgdesc='python2 bindings for libcgroup'
+url='https://git.fedorahosted.org/cgit/python-libcgroup.git/'
+arch=('any')
+license=('GPLv2+')
+depends=('python2>=2.6' 'libcgroup>=0.38')
+makedepends=('python2>=2.6' 'cython2' 'python2-setuptools' 'libcgroup')
+source=("https://git.fedorahosted.org/cgit/python-libcgroup.git/snapshot/python-libcgroup-$pkgver-$pkgrel.tar.gz")
+md5sums=('6e054a246c2f4d2301bfcd8eefb571c9')
+
+build() {
+    cd "python-libcgroup-$pkgver-$pkgrel"
+    python2 setup.py build
+}
+
+package() {
+    cd "python-libcgroup-$pkgver-$pkgrel"
+    python2 setup.py install --skip-build --root="$pkgdir"
+}
